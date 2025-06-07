@@ -1,37 +1,23 @@
-interface Vehicle {
-  distance: number
-  speed: number
-}
-
-interface Car extends Vehicle {
+interface Car {
   maker: string
-}
-
-interface Airplane extends Vehicle {
-  altitude: number
-  seat: 200
-}
-
-const car: Car = {
-  maker: 'Toyota',
-  distance: 0,
-  speed: 50
-}
-
-class Boat implements Vehicle {
   distance: number
-  private seats: number
   speed: number
-
-  constructor (speed: number) {
-    this.distance = 0
-    this.seats = 2
-    this.speed = speed
-  }
 }
 
-const boat = new Boat(100)
+type CarKey = keyof Car
 
-function travel (vehicle: Vehicle) {
+function describe <T extends CarKey> (car: Car, key: T) {
+  const value = car[key]
+  console.log('The', key, 'is', value)
+  return key
 }
-travel(boat)
+const result = describe(
+  {
+    maker: 'Toyota',
+    distance: 0,
+    speed: 50,
+  },
+  'maker'
+)
+
+const x = Math.random()
