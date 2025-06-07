@@ -1,7 +1,15 @@
-interface Car {
-  maker: string
+interface Vehicle {
   distance: number
   speed: number
+}
+
+interface Car extends Vehicle {
+  maker: string
+}
+
+interface Airplane extends Vehicle {
+  altitude: number
+  seat: 200
 }
 
 const car: Car = {
@@ -10,32 +18,20 @@ const car: Car = {
   speed: 50
 }
 
-class Boat {
-  private password = '1234'
+class Boat implements Vehicle {
+  distance: number
   private seats: number
-  private sailCount = 0
   speed: number
 
   constructor (speed: number) {
+    this.distance = 0
     this.seats = 2
     this.speed = speed
-  }
-
-  private congratulate () {
-    console.log('You sailed this boat more than 10 times!')
-  }
-
-  sail () {
-    this.sailCount += 1
-    if (this.sailCount > 10) {
-      this.congratulate()
-    }
   }
 }
 
 const boat = new Boat(100)
-// boat.congratulate()
-// boat.sailCount = 100
-boat.sail()
-boat.sail()
-boat.sail()
+
+function travel (vehicle: Vehicle) {
+}
+travel(boat)
