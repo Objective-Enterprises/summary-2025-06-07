@@ -4,20 +4,16 @@ interface Car {
   speed: number
 }
 
-type CarKey = keyof Car
 
-function describe <T extends CarKey> (car: Car, key: T) {
-  const value = car[key]
-  console.log('The', key, 'is', value)
-  return key
+
+
+
+
+type Vehicle = Omit<Car, 'maker' | 'distance'>
+
+
+function combine (a: number, b: number) {
+  return [a, b]
 }
-const result = describe(
-  {
-    maker: 'Toyota',
-    distance: 0,
-    speed: 50,
-  },
-  'maker'
-)
 
-const x = Math.random()
+type Combined = ReturnType<typeof combine>
